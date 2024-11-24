@@ -1,11 +1,22 @@
 
-
+<% content_for :title, "SnapWander: Travel & Share" %>
 <h1>Hello, Ruby on Rails</h1>
 <h2>Suraj Budhathoki</h2>
 <h1>Articles</h1>
-<ul>
+<%= link_to "Add a New Article", new_article_path %>
+
+<div class="articles-grid">
   <% @articles.each do |article| %>
-    <li><strong><%= article.title %></strong>: <%= article.body %> </li>
+    <div class="article-card">
+      <%= link_to article.title, article, class: "article-title" %>
+      <% if article.image.attached? %>
+        <%= image_tag article.image, class: "article-image" %>
+      <% end %>
+    </div>
   <% end %>
-</ul>
+</div>
+
+
+
+
 

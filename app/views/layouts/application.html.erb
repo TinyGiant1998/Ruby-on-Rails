@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Blog" %></title>
+    <title><%= content_for(:title) || "SnapWander - Travel & Share" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -23,6 +23,28 @@
   </head>
 
   <body>
+<!-- Header -->
+    <header>
+      <div class="logo">
+      <%= link_to root_path do %>
+        <%# image_tag "snapwander.png", alt: "SnapWander Logo", class: "logo-image" %>
+        <div class="logo-title">
+         <span class="animated-text"> <strong>SnapWander</strong></span>
+          </div>
+        <% end %>
+        
+    </div>
+      
+    </header>
+
+ <!-- Main Content -->
+    <main>
     <%= yield %>
+    </main>
+
+    <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 My Blog. All rights reserved.</p>
+  </footer>
   </body>
 </html>

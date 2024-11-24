@@ -8,3 +8,171 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ /* General body styling */
+body {
+  background-color: #F5F5F5;
+  color: #333333;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  box-sizing: border-box;
+  background: linear-gradient(to top right, #FFC0CB, #FFFFFF); /* Gradient from dark pink to light pink */
+  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+
+}
+
+/* Main content area styling */
+main {
+  max-width: 1200px; /* Adjust max width to suit your layout */
+  margin: 0 auto; /* Center the content */
+  padding: 16px;
+}
+
+/* Header styling */
+header {
+  background: linear-gradient(90deg, #333333, #0d2920); /* Blue to teal gradient */
+  color: #FFFFFF;
+  /* padding: 16px 0; */
+  text-align: center;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Add this in your application.css or a dedicated stylesheet */
+
+header .logo {
+  text-align: center; /* Center the logo */
+  padding: 0px;
+  margin: 0px;
+  background-image: url('sunset.avif');
+  background-repeat: no-repeat;
+  background-size: cover; /* Ensure the image covers the whole header */
+  background-position: center; /* Center the image within the header */
+  height: auto; /* Make the header take up the full height of the viewport (you can adjust this if needed) */
+
+}
+
+header .logo-image {
+  max-width: 200px; /* Adjust logo size */
+  height: auto;
+}
+
+/* Basic styles for the logo */
+header .logo-title {
+  font-size: 10rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: transparent; /* Ensures text is transparent */
+  display: inline-block;
+  position: relative;
+}
+
+header .logo-title .animated-text {
+  display: inline-block;
+  background-image: url('paris.jpg'); /* Use a large image URL here */
+  background-size: 200% 100%; /* Make the background image wider */
+  background-position: 0 0; /* Start position of the image */
+  -webkit-background-clip: text; /* Clips the background to the text */
+  background-clip: text; /* This allows the background to flow through the text */
+  color: transparent; /* Text is invisible, only the background image shows */
+  animation: imageFlow 25s linear infinite; /* Adjusted animation duration */
+}
+
+/* Keyframe for the flowing image effect */
+@keyframes imageFlow {
+  0% {
+    background-position: 0 0; /* Start at left side */
+  }
+  100% {
+    background-position: -100% 0; /* Move the background to the left */
+  }
+}
+
+
+
+
+/* Footer styling */
+footer {
+  background-color: #333333;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 16px 0;
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+
+/* Links */
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #20C997;
+}
+
+/* Articles grid */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 columns */
+  gap: 16px; /* Space between cards */
+  padding: 16px;
+}
+
+/* Article card */
+.article-card {
+  background-color: #FFFFFF;
+  border: 1px solid #EAEAEA;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Article image */
+.article-card img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Ensure grid items don't get squished */
+@media (max-width: 1024px) {
+  .articles-grid {
+    grid-template-columns: repeat(3, 1fr); /* Adjust for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr); /* Adjust for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .articles-grid {
+    grid-template-columns: 1fr; /* Single column for mobile */
+  }
+}
+
+/* Show page image styling */
+.show-article-image {
+  width: 100%;
+  max-width: 600px; /* Limit width to prevent oversized images */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0 auto; /* Center the image */
+  display: block; /* Block level to apply centering */
+  border-radius: 8px; /* Optional: Rounded corners for a polished look */
+}

@@ -1,0 +1,28 @@
+<h1><%= @article.title %></h1>
+
+<p><%= @article.body %></p>
+
+<p><% if @article.image.attached? %>
+<%= image_tag @article.image, class: "show-article-image", alt: @article.title%>
+<% else %>
+No image provided
+<% end %>
+</p>
+<ul>
+  <li><%= link_to 'Back', articles_path %></li>
+  <li><%= link_to "Edit", edit_article_path(@article) %></li>
+  <li> <%= link_to "Destroy", article_path(@article), data: {
+    turbo_method: :delete, 
+    turbo_confirm: "Are you sure?"
+  } %>
+  </ul>
+
+  <h2>Comments</h2>
+  <!-- <% @article.comments.each do |comment| %>    <% end %> -->
+<%= render @article.comments%>
+  
+
+
+  <h2>Add a comment:</h2>
+<%= render "comments/form", article: @article %>
+
