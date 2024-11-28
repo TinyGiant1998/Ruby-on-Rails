@@ -10,121 +10,205 @@
  */
 
  /* General body styling */
-body {
-  background-color: #F5F5F5;
-  color: #333333;
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  box-sizing: border-box;
-  background: linear-gradient(to top right, #FFC0CB, #FFFFFF); /* Gradient from dark pink to light pink */
-  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
 
+ /* Ensure the html element covers the full height of the page */
+
+/* Global Styling */
+html {
+  height: 100%; /* Ensure the html element takes full height */
+  margin: 0; /* Remove default margin */
+  /* background: linear-gradient(to top right, #FFC0CB, #FFFFFF);  */
+  /* Gradient from light pink to white */
+  /* background: linear-gradient(to top right, #312f2f, #645252);  */
+  background: linear-gradient(to top right, #312f2f, #645252);
 }
 
-/* Main content area styling */
+/* Body Styling */
+body {
+  margin: 0;
+  padding: 0;
+  /* background: linear-gradient(to top right, #FFC0CB, #FFFFFF); */
+  /* background: linear-gradient(to top right, #312f2f, #645252); */
+  /* color: #333333;
+  font-family: 'Arial', sans-serif; */
+  background-color: #000000; /* Clean white background */
+  color: #333333; /* Dark gray text for readability */
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+  background-image: url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Main Content Styling */
 main {
   max-width: 1200px; /* Adjust max width to suit your layout */
   margin: 0 auto; /* Center the content */
   padding: 16px;
+  flex: 1; /* Allow main content to take up the remaining space */
 }
 
-/* Header styling */
-header {
-  background: linear-gradient(90deg, #333333, #0d2920); /* Blue to teal gradient */
-  color: #FFFFFF;
-  /* padding: 16px 0; */
+
+/* Footer Styling */
+footer {
+   background-color: #F4F4F4; /* Light Gray */
+  color: #333333;
   text-align: center;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  padding: 20px 0;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
-header h1 {
-  margin: 0;
-  font-size: 2rem;
+/* Footer Paragraph */
+footer p {
+  margin: 10px 0;
 }
 
-/* Add this in your application.css or a dedicated stylesheet */
-
-header .logo {
-  text-align: center; /* Center the logo */
-  padding: 0px;
-  margin: 0px;
-  background-image: url('sunset.avif');
-  background-repeat: no-repeat;
-  background-size: cover; /* Ensure the image covers the whole header */
-  background-position: center; /* Center the image within the header */
-  height: auto; /* Make the header take up the full height of the viewport (you can adjust this if needed) */
-
+/* Social Media Links */
+.social-links {
+  margin-top: 10px;
 }
 
-header .logo-image {
-  max-width: 200px; /* Adjust logo size */
-  height: auto;
+.social-icon {
+  color: #333333;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
 }
 
-/* Basic styles for the logo */
+.social-icon:hover {
+  color: #FF6F61; /* A darker coral color for hover effect */
+}
+
+.site-name-link {
+  cursor: pointer;
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Ensure it inherits color from the parent */
+}
+
+
+
+
+
+/* Overall header styling */
+header {
+  background: #000000; /*linear-gradient(to right, #FF7F50, #1E90FF);  Gradient from coral to ocean blue, giving a warm, travel vibe */
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft shadow to add depth */
+  border-radius: 10px; /* Rounded corners for a smoother look */
+}
+
+/* Logo and slogan container */
 header .logo-title {
-  font-size: 10rem;
-  font-family: Arial, Helvetica, sans-serif;
-  color: transparent; /* Ensures text is transparent */
   display: inline-block;
+  text-align: center;
   position: relative;
 }
 
-header .logo-title .animated-text {
-  display: inline-block;
-  background-image: url('paris.jpg'); /* Use a large image URL here */
-  background-size: 200% 100%; /* Make the background image wider */
-  background-position: 0 0; /* Start position of the image */
-  -webkit-background-clip: text; /* Clips the background to the text */
-  background-clip: text; /* This allows the background to flow through the text */
-  color: transparent; /* Text is invisible, only the background image shows */
-  animation: imageFlow 25s linear infinite; /* Adjusted animation duration */
+/* Site name styling */
+header .logo-title .site-name {
+  font-size: 5rem; /* Large, bold text for the brand */
+  font-family: 'Open Sans', sans-serif; /* Playful, handwritten style */
+  color: white; /* White text stands out against the gradient background */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: slideIn 3s ease-out; /* Sliding animation for the main brand name */
+  display: block;
+  margin-bottom: 20px;
 }
 
-/* Keyframe for the flowing image effect */
-@keyframes imageFlow {
+/* Slogan styling */
+header .logo-title .slogan {
+  font-size: 1.8rem;
+  font-family: 'Lora', serif; /* A contrasting serif font to balance the playful script */
+  color: #ffffff;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  animation: fadeIn 2s ease-in 1s; /* Fade-in effect for the slogan */
+}
+
+/* Keyframe for sliding effect */
+@keyframes slideIn {
   0% {
-    background-position: 0 0; /* Start at left side */
+    transform: translateX(-100%);
   }
   100% {
-    background-position: -100% 0; /* Move the background to the left */
+    transform: translateX(0);
+  }
+}
+
+/* Keyframe for the fade-in effect */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Hover effect on site name */
+header .logo-title .site-name:hover {
+  transform: scale(1.1); /* Slight scale-up on hover */
+  transition: transform 0.3s ease;
+  color: #FF6347; /* Warm coral color for interaction */
+}
+
+/* Responsive design for medium screens */
+@media (max-width: 768px) {
+  header .logo-title .site-name {
+    font-size: 3.5rem;
+  }
+  
+  header .logo-title .slogan {
+    font-size: 1.5rem;
+  }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 480px) {
+  header .logo-title .site-name {
+    font-size: 2.5rem;
+  }
+  
+  header .logo-title .slogan {
+    font-size: 1.2rem;
   }
 }
 
 
 
 
-/* Footer styling */
-footer {
-  background-color: #333333;
-  color: #FFFFFF;
-  text-align: center;
-  padding: 16px 0;
-  font-size: 0.9rem;
-  margin-top: 20px;
-}
+
+
 
 /* Links */
 a {
-  color: #007BFF;
-  text-decoration: none;
+  color: #71C7E3; /* Sky Blue */
 }
 
 a:hover {
-  color: #20C997;
+  color: #FF6F61; /* Soft Coral */
 }
 
-/* Articles grid */
+/* Articles Grid */
 .articles-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 columns */
-  gap: 16px; /* Space between cards */
+  grid-template-columns: repeat(6, 1fr); /* Set to 6 columns by default */
+  gap: 16px 24px; /* Space between cards */
   padding: 16px;
+  justify-content: center; /* Center grid items if they don't fill up the row */
+  align-items: stretch; /* Ensure that all items are the same height */
 }
 
-/* Article card */
+/* Article Card */
 .article-card {
   background-color: #FFFFFF;
   border: 1px solid #EAEAEA;
@@ -133,18 +217,22 @@ a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures all cards are same height */
 }
 
+/* Hover effect for article card */
 .article-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Article image */
+/* Article Image */
 .article-card img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
+  width: 100%;
+  height: 200px; /* Fixed height for uniformity */
+  object-fit: cover; /* Ensure image covers the area */
   border-radius: 4px;
 }
 
@@ -175,4 +263,99 @@ a:hover {
   margin: 0 auto; /* Center the image */
   display: block; /* Block level to apply centering */
   border-radius: 8px; /* Optional: Rounded corners for a polished look */
+}
+
+/* Footer with Social Media Icons */
+footer .social-links {
+  margin-top: 10px;
+}
+
+footer .social-icon {
+  color: #333333;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+footer .social-icon:hover {
+  color: #FF6F61; /* A darker coral color for hover effect */
+}
+
+/* for button css style */
+button {
+  background-color: #FF6F61; /* Soft Coral */
+  color: #FFFFFF;
+}
+
+button:hover {
+  background-color: #FFD700; /* Soft Yellow on hover */
+}
+
+/* Wrapper for the entire content */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+/* Media sections */
+.media-section {
+  width: 100%;
+  text-align: center;
+}
+
+/* Title for each media section */
+.media-title {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Grid layout for images and videos */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Media card container */
+.media-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Media item (image or video) */
+.media-item {
+  width: 100%;
+  height: 150px;
+  object-fit: cover; /* Ensures consistent scaling */
+  border-radius: 8px;
+}
+
+/* Hover effect for media items */
+.media-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Placeholder text when no media is available */
+.media-placeholder {
+  font-size: 1em;
+  color: #999;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 768px) {
+  .media-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }

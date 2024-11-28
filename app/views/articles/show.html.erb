@@ -2,27 +2,55 @@
 
 <p><%= @article.body %></p>
 
-<p><% if @article.image.attached? %>
-<%= image_tag @article.image, class: "show-article-image", alt: @article.title%>
-<% else %>
-No image provided
-<% end %>
-</p>
-<ul>
-  <li><%= link_to 'Back', articles_path %></li>
+<div class="content-wrapper">
+  <!-- Images Section -->
+  <div class="media-section">
+    <h3 class="media-title">Images:</h3>
+    <% if @article.images.attached? %>
+      <div class="media-grid">
+        <% @article.images.each do |image| %>
+          <div class="media-card">
+            <%= image_tag image, class: "media-item", alt: @article.title %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="media-placeholder">No images provided.</p>
+    <% end %>
+  </div>
+
+  <!-- Videos Section -->
+  <div class="media-section">
+    <h3 class="media-title">Videos:</h3>
+    <% if @article.videos.attached? %>
+      <div class="media-grid">
+        <% @article.videos.each do |video| %>
+          <div class="media-card">
+            <video class="media-item" controls preload="metadata" playsinline>
+              <source src="<%= url_for(video) %>" type="<%= video.content_type %>">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="media-placeholder">No videos provided.</p>
+    <% end %>
+  </div>
+</div>
+
+
+<!-- Navigation Menu -->
+<ul class="nav-menu">
+  <li><%= link_to "Back", articles_path %></li>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li> <%= link_to "Destroy", article_path(@article), data: {
-    turbo_method: :delete, 
-    turbo_confirm: "Are you sure?"
-  } %>
-  </ul>
+  <li><%= link_to "Destroy", article_path(@article), method: :delete, data: { turbo_confirm: "Are you sure?" } %></li>
 
-  <h2>Comments</h2>
-  <!-- <% @article.comments.each do |comment| %>    <% end %> -->
-<%= render @article.comments%>
-  
+</ul>
 
+<!-- Comments Section -->
+<h2>Comments</h2>
+<%= render @article.comments %>
 
-  <h2>Add a comment:</h2>
+<h2>Add a comment:</h2>
 <%= render "comments/form", article: @article %>
-

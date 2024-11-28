@@ -1,60 +1,60 @@
 class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
-  has_one_attached :image, dependent: :destroy
+  has_many_attached :images, dependent: :destroy
+  has_many_attached :videos, dependent: :destroy
 validates :title, presence: true, length: { minimum: 5, maximum: 15 }
 validates :body, presence: true, length: { minimum: 10 }
 
-# custom validation for image
-validate :image_presence, on: [ :create, :update ]
-validate :image_format, if: -> { image.attached? }
-validate :image_size, if: -> { image.attached? }
+# custom validation for imagesx
+validate :validate_images
+validate :validate_videos
 
 
 private
-# ensure image is attached
-def image_presence
-  unless image.attached?
+# ensure images is attached
+def validate_images
+  if images.blank?
+   errors.add(:images, "must include at least one image")
+   return
+  end
 
-  errors.add(:image, "must be attached")
+  images.each do |image|
+  acceptable_formats = %w[image/jpeg image/png image/gif image/tiff image/heic image/dng]
+
+  # Validate format
+  unless acceptable_formats.include?(image.content_type)
+    errors.add(:images, "must be a valid images format (JPEG, PNG, GIF, TIFF, HEIC, or DNG)")
+  end
+
+  if image.blob.byte_size > 25.megabytes
+      errors.add(:images, "Images size must be smaller than 25MB")
   end
 end
-
-# ensure the image format is valid
-def image_format
-    return unless image.attached?
-
-    acceptable_formats = [ "image/jpeg", "image/png", "image/gif", "image/tiff", "image/heic", "image/dng" ]
-    # Check if the uploaded image format is acceptable
-    unless acceptable_formats.include?(image.content_type)
-      errors.add(:image, "must be a valid image format (JPEG, PNG, GIF, TIFF, HEIC, or DNG)")
-      return
-    end
-
-    # If the image is HEIC or DNG, convert it to PNG
-    if [ "image/heic", "image/dng" ].include?(image.content_type)
-      begin
-        # Read the uploaded image using MiniMagick
-        processed_image = MiniMagick::Image.read(image.download)
-
-        # Convert the image to PNG (you can choose JPEG if you prefer)
-        processed_image.format("png")
-
-        # Re-attach the converted image back to the model
-        image.attach(io: processed_image.to_io, filename: "#{image.filename.base}.png", content_type: "image/png")
-      rescue => e
-        errors.add(:image, "Failed to convert image: #{e.message}")
-      end
-    end
 end
 
 
+def validate_videos
+return unless videos.attached?
 
-# ensure image size is under 50MB
-def image_size
-  if image.byte_size > 50.megabytes
-      errors.add(:image, "must be smaller than 50MB")
-  end
+ # Ensure no more than 2 videos
+ if videos.count > 2
+  errors.add(:videos, "cannot upload more than 2 videos")
+ return
+ end
+
+ videos.each do |video|
+   acceptable_formats = %w[video/mp4 video/mpeg video/quciktime video/mov vidoe/hevc]
+   unless acceptable_formats.include?(video.content_type)
+     errors.add(:videos, "must be an MP4, MPEG, MOV or Quick Time file")
+   end
+
+   if video.blob.byte_size > 100.megabytes
+     errors.add(:videos, "must be smaller than 500MB")
+   end
+ end
 end
+
+
 
 
 # custom logic to save and update articels.csv file

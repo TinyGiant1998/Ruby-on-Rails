@@ -9,11 +9,15 @@
   <% @articles.each do |article| %>
     <div class="article-card">
       <%= link_to article.title, article, class: "article-title" %>
-      <% if article.image.attached? %>
-        <%= image_tag article.image, class: "article-image" %>
+      <% if article.images.attached? %>
+        <%= image_tag article.images.first, class: "article-image" %>
+        <% else %>
+        <p class = "article-title" >No image available</p>
       <% end %>
     </div>
+   
   <% end %>
+   
 </div>
 
 
